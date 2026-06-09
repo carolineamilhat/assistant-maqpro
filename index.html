@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistant MaqPro — Protocoles d'application</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F7F6F4;--surface:#FFFFFF;--border:#E5E2DC;--border-soft:#EEECE8;
+  --text:#1A1A1A;--text-secondary:#6B6560;--text-tertiary:#A09890;
+  --accent:#C0392B;--accent-soft:#FAEEEC;--accent-border:#E8B5B0;
+  --green:#2D6A3F;--green-soft:#EBF4EE;--green-border:#A3CEAD;
+  --radius:10px;--radius-sm:6px;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 16px}
+header{width:100%;max-width:800px;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.logo{width:38px;height:38px;background:#1A1A1A;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:600;color:#fff;letter-spacing:.5px}
+.header-text h1{font-size:16px;font-weight:600;color:var(--text)}
+.header-text p{font-size:12px;color:var(--text-secondary);margin-top:1px}
+.badge{margin-left:auto;font-size:11px;padding:3px 10px;border-radius:20px;background:var(--green-soft);color:var(--green);border:1px solid var(--green-border);white-space:nowrap}
+#app{width:100%;max-width:800px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;height:calc(100vh - 140px);min-height:500px}
+#chat{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{display:flex;gap:8px;max-width:94%}
+.msg.user{align-self:flex-end;flex-direction:row-reverse}
+.msg.bot{align-self:flex-start}
+.bub{padding:10px 14px;border-radius:11px;font-size:13px;line-height:1.65}
+.msg.user .bub{background:#1A1A1A;color:#fff;border-radius:11px 11px 3px 11px}
+.msg.bot .bub{background:#F7F6F4;color:var(--text);border:1px solid var(--border-soft);border-radius:11px 11px 11px 3px;width:100%}
+.av{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600}
+.msg.bot .av{background:#1A1A1A;color:#fff}
+.msg.user .av{background:#E8E5E0;color:var(--text-secondary);border:1px solid var(--border)}
+.sl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--text-tertiary);margin:8px 0 4px;display:block}
+.sl:first-child{margin-top:0}
+.step{display:block;padding:3px 0 3px 13px;border-left:2px solid var(--border);margin-bottom:3px;font-size:13px}
+.note{display:flex;gap:7px;align-items:flex-start;margin-top:7px;padding:8px 10px;border-radius:var(--radius-sm);border:1px solid var(--accent-border);background:var(--accent-soft)}
+.note span{color:var(--accent);font-size:12px;line-height:1.5}
+.note::before{content:"⚠";font-size:13px;flex-shrink:0;color:var(--accent)}
+.meta{display:flex;gap:7px;margin-bottom:7px;flex-wrap:wrap}
+.mpill{font-size:11px;padding:2px 9px;border-radius:20px;background:#F0EDE8;border:1px solid var(--border);color:var(--text-secondary)}
+.prod-block{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:4px}
+.prod-row{padding:7px 11px;border-bottom:1px solid var(--border-soft);font-size:12px;line-height:1.5}
+.prod-row:last-child{border-bottom:none}
+.prod-row strong{color:var(--text)}
+.prod-row span{color:var(--text-secondary)}
+.demaq-block{padding:9px 11px;background:#F7F6F4;border-radius:var(--radius-sm);border:1px solid var(--border);font-size:12px;line-height:1.7;color:var(--text-secondary)}
+.demaq-block strong{color:var(--text)}
+.toggle-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;cursor:pointer;background:var(--surface);color:var(--text-secondary);margin-top:4px;margin-bottom:2px;transition:background .15s;font-family:'Inter',system-ui,sans-serif}
+.toggle-btn:hover{background:#F0EDE8}
+.refs-text{font-size:11.5px;color:var(--text-secondary);margin-bottom:7px}
+.typing{display:flex;gap:4px;padding:10px 13px;background:#F7F6F4;border:1px solid var(--border-soft);border-radius:11px 11px 11px 3px;align-items:center}
+.typing span{width:5px;height:5px;border-radius:50%;background:var(--text-tertiary);animation:bl 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,80%,100%{opacity:.3}40%{opacity:1}}
+#chips-wrap{border-top:1px solid var(--border);flex-shrink:0}
+#chips{padding:8px 12px 4px;display:flex;gap:5px;flex-wrap:wrap;max-height:110px;overflow-y:auto}
+.chip{padding:4px 10px;border:1px solid var(--border);border-radius:20px;font-size:11.5px;cursor:pointer;background:var(--surface);color:var(--text-secondary);white-space:nowrap;transition:all .15s;font-family:'Inter',system-ui,sans-serif}
+.chip:hover{background:#F0EDE8;border-color:#C8C3BB;color:var(--text)}
+.chip:disabled{opacity:.4;cursor:default}
+#input-row{display:flex;gap:8px;padding:8px 12px 10px;border-top:1px solid var(--border-soft)}
+#inp{flex:1;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;font-size:13px;resize:none;min-height:38px;max-height:80px;background:var(--surface);color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.4}
+#inp:focus{outline:none;border-color:#A09890}
+#inp::placeholder{color:var(--text-tertiary)}
+#send-btn{width:36px;height:36px;border-radius:var(--radius-sm);border:none;background:#1A1A1A;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
+#send-btn:hover{opacity:.8}
+#send-btn:disabled{opacity:.35;cursor:not-allowed}
+footer{width:100%;max-width:800px;text-align:center;margin-top:12px;font-size:11px;color:var(--text-tertiary)}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">MQ</div>
+  <div class="header-text">
+    <h1>Assistant MaqPro</h1>
+    <p>Protocoles d'application · Précautions d'emploi</p>
+  </div>
+  <span class="badge">✓ 35 fiches officielles</span>
+</header>
+<div id="app">
+  <div id="chat"></div>
+  <div id="chips-wrap">
+    <div id="chips">
+      <button class="chip" onclick="run(0)">Arcade sourcilière éclatée</button>
+      <button class="chip" onclick="run(1)">Brûlure chimique</button>
+      <button class="chip" onclick="run(2)">Brûlure grave avec cloques</button>
+      <button class="chip" onclick="run(3)">Brûlure simple</button>
+      <button class="chip" onclick="run(4)">Brûlure thermique</button>
+      <button class="chip" onclick="run(5)">Coup de soleil</button>
+      <button class="chip" onclick="run(6)">Cyanose</button>
+      <button class="chip" onclick="run(7)">Malaise</button>
+      <button class="chip" onclick="run(8)">Doigt coupé / éclaté / fracturé</button>
+      <button class="chip" onclick="run(9)">Éraflures</button>
+      <button class="chip" onclick="run(10)">Morsure</button>
+      <button class="chip" onclick="run(11)">Nez cassé</button>
+      <button class="chip" onclick="run(12)">Œil crevé</button>
+      <button class="chip" onclick="run(13)">Lèvre éclatée</button>
+      <button class="chip" onclick="run(14)">Plaie abdomen avec éviscération</button>
+      <button class="chip" onclick="run(15)">Plaie à la main</button>
+      <button class="chip" onclick="run(16)">Plaie à la paupière</button>
+      <button class="chip" onclick="run(17)">Plaie à la tête</button>
+      <button class="chip" onclick="run(18)">Plaie grave avant-bras</button>
+      <button class="chip" onclick="run(19)">Plaie hémorragique</button>
+      <button class="chip" onclick="run(20)">Plaie simple / corps étranger / grave</button>
+      <button class="chip" onclick="run(21)">Plaie thoracique soufflante</button>
+      <button class="chip" onclick="run(22)">Pose d'une prothèse</button>
+      <button class="chip" onclick="run(23)">Entretien d'une prothèse</button>
+      <button class="chip" onclick="run(24)">Préparation cylindre Plasto-Nat</button>
+      <button class="chip" onclick="run(25)">Pose cylindre Plasto-Nat</button>
+      <button class="chip" onclick="run(26)">Préparation d'une viscère</button>
+      <button class="chip" onclick="run(27)">Scalp</button>
+      <button class="chip" onclick="run(28)">Entretien des pinceaux</button>
+    </div>
+    <div id="input-row">
+      <textarea id="inp" placeholder="Posez une question libre… ex : quelle différence entre Sang Gélifié et Sang Coagulé ?" rows="1"></textarea>
+      <button id="send-btn" onclick="sendFree()" title="Envoyer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<footer>MaqPro Paris · Fabrication française · Origine France Garantie · maqpro.com</footer>
+
+<script>
+const SYSTEM=`Tu es un assistant expert en produits MaqPro, spécialisé dans le maquillage effets spéciaux (SFX) et le maquillage secourisme / simulation de victimes. Tu conseilles aussi bien les débutants, les professionnels du cinéma et du théâtre, les formateurs secouristes, que les revendeurs.
+
+Tes connaissances couvrent les 35 fiches techniques officielles MaqPro, le catalogue secourisme, et tous les produits MaqPro : Protection Latex, Plasto-Nat, Sealor, Latex, Simulation Peau, Fards Crème (11 couleurs), Sang Artificiel (L/N/E), Sang Gélifié, Sang Coagulé, Produit Simulation Cloques, RCFILM, Poudre transparente, Collodion officinal, Liquide transpiration, Dissolvant pour Colles et Latex, Biological Cleaner, Gelée Démaquillante, Lait Démaquillant, Nettoyant Pinceaux, Colle Prothèses, Tubulure, et tous les accessoires.
+
+Règles :
+- Réponds toujours en français.
+- Sois précis et professionnel, accessible à tous niveaux.
+- Ne mentionne jamais de produits concurrents.
+- Rappelle les précautions d'emploi quand pertinent.
+- Pour les conseils achat, oriente vers les kits KM1, KM2, KM4B ou KIT01.
+- Si tu ne connais pas un détail, dis-le et oriente vers maqpro.com.`;
+
+const PRODS={
+"Protection Latex":"Protection cutanée obligatoire avant toute réalisation avec Latex ou Plasto-Nat. Appliquer dans le sens des poils. Ne jamais appliquer près des yeux ou des muqueuses.",
+"Plasto-Nat":"Pâte à modeler pour la peau (chair clair, métisse, black). Façonner en boulette, ramollir, rouler en cylindre sur la partie osseuse de la paume. Toujours sur peau tendue.",
+"Simulation Peau":"Associé au Latex, simule la peau humaine. Peut se coudre. Diffuser en forme ovale.",
+"Sealor":"Film transparent qui durcit le Plasto-Nat. Tapoter pour sécher. Résiste aux compressions. Ne jamais appliquer près des yeux ou des muqueuses.",
+"Latex":"Latex naturel pré-vulcanisé. En séchant : brillant, transparent, collant. Couches successives séchées. Ne jamais appliquer près des yeux ou des muqueuses.",
+"RCFILM":"Film protecteur en spray. Fixe Plasto-Nat, Prothèses et Produit Simulation Cloques.",
+"Fards Crème":"Résiste à l'eau, tenue 12h, ne tache pas. Ordre : jaune → bleu → rouge-sang.",
+"Sang Artificiel":"Alimentaire, ne tache pas, eau froide. Versions L (liquide), N (normal), E (épais). Ne pas diluer.",
+"Sang Gélifié":"Effet chair à vif. Ne s'effile pas, ne colle pas. Eau tiède.",
+"Sang Coagulé":"Version pâteuse du Sang Artificiel. Estafilades, plaies coagulées. Sèche vite.",
+"Produit Simulation Cloques":"Former des gouttes, lisser les bords à la spatule. Fixer avec RCFILM ou Latex.",
+"Poudre transparente":"S'applique à la houppe. Évite que le Latex ne colle.",
+"Gelée Démaquillante":"Pour peaux sensibles. Lubrifiant pour la spatule lors des incisions. Sur la racine des cheveux avant Simulation Peau.",
+"Colle Prothèses":"Au coton tige sur le pourtour. Attendre transparence. Peut se préparer à l'avance.",
+"Dissolvant pour Colles et Latex":"Retire Plasto-Nat, Latex, Collodion, Sealor. Ne jamais appliquer près des yeux ou des muqueuses.",
+"Biological Cleaner":"Retire les Fards Crèmes et désinfecte. Sans alcool.",
+"Nettoyant Pinceaux":"Tremper quelques secondes, égoutter. Sec, propre et désinfecté.",
+"Collodion officinal":"Film tendu en séchant. Tirer sur la peau pour le déchirer.",
+"Liquide transpiration":"S'applique à l'éponge hématomes. Se démaquille à l'eau.",
+"Éponge mousse":"Pour grandes surfaces et Latex. Savon solide.",
+"Éponge hématomes":"Vaisseaux éclatés, griffures, sueurs. Savon solide.",
+"Spatule inox":"Tremper dans Gelée Démaquillante avant toute incision dans le Plasto-Nat.",
+"Tubulure":"Hémorragie active. Fixer avec sparadrap avant le Plasto-Nat.",
+"Sparadrap":"Nombril (abdomen), fermer l'œil (œil crevé) ou fixer la Tubulure."
+};
+
+const DMQ_STD=[{s:"Retirer le Plasto-Nat",d:"Kleenex ou spatule."},{s:"Dissoudre",d:"Coton imbibé de <strong>Dissolvant pour colles</strong>. Essuyer."},{s:"Finition peau",d:"Coton imbibé de <strong>Biological cleaner</strong>."},{s:"Matériel",d:"Spatule : Dissolvant. Pinceau : Nettoyant pinceaux."}];
+const DMQ_LATEX=[{s:"Retirer le Latex et le Sang",d:"Rincer à l'<strong>eau tiède</strong>."},{s:"Dissoudre",d:"Coton imbibé de <strong>Dissolvant pour colles</strong>. Essuyer."},{s:"Finition peau",d:"Coton imbibé de <strong>Biological cleaner</strong>."},{s:"Matériel",d:"Spatule : Dissolvant. Pinceau : Nettoyant pinceaux."}];
+
+const S=[
+{user:"Comment réaliser une arcade sourcilière éclatée ?",meta:["⏱ 3 min 30s","Tenue 8h"],refs:"Fard crème rouge-sang, kaki, bleu, jaune (1003/A) · Plasto-Nat (2027/A) · Sang artificiel liquide (2001/L) · Spatule inox (A013) · Pinceau N°2 (3001) · Éponge hématomes (1061A)",produits:["Protection Latex","Plasto-Nat","Fards Crème","Sang Artificiel","Éponge hématomes","Spatule inox","Dissolvant pour Colles et Latex","Biological Cleaner","Nettoyant Pinceaux"],warning:null,steps:["Appliquer un cylindre de <strong>Plasto-Nat</strong> sur le sourcil. Lisser les bords.","Incision au centre à la <strong>spatule inox</strong>.","<strong>Fard jaune</strong> sur la paupière et sous l'œil. <strong>Fard bleu</strong>. <strong>Fard rouge-sang</strong>.","<strong>Fard kaki</strong> dans le cerne — effet « regard fatigué ».","Colorer l'incision au <strong>Pinceau N°2</strong>. Diffuser au doigt.","<strong>Éponge hématomes</strong> imbibée de Fard rouge-sang au centre de l'impact.","<strong>Sang Artificiel liquide</strong> depuis le haut. Estomper le surplus."],demaq:DMQ_STD},
+{user:"Comment faire une brûlure chimique ?",meta:["⏱ 1 min 30s","Tenue effet : 3–5 min"],refs:"Protection Latex (2070) · Fard crème rouge (1003/A) · Simulation cloques (2150) · Comprimé effervescent · Vaporisateur d'eau",produits:["Protection Latex","Fards Crème","Produit Simulation Cloques","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:"L'effet effervescent dure 3 à 5 minutes — déclencher au moment précis.",steps:["<strong>Protection Latex</strong>. <strong>Fard rouge</strong>.","Fine couche de <strong>Produit Simulation Cloques</strong> à la spatule.","<strong>Comprimé effervescent réduit en poudre</strong>. <strong>Vaporiser de l'eau</strong>."],demaq:[{s:"Démaquillage",d:"Kleenex → coton <strong>Dissolvant pour colles</strong> → coton <strong>Biological cleaner</strong>."}]},
+{user:"Comment simuler une brûlure grave avec cloques ?",meta:["⏱ 3 min 05s (v1) / 4 min 16s (v2)","Tenue 6h"],refs:"Protection Latex (2070) · Fard crème rouge, rouge-sang, jaune, noir (1003A) · Simulation cloques (2150) · RCFILM (RC001) · Poudre transparente (1062) · Sang artificiel (2001N)",produits:["Protection Latex","Fards Crème","Produit Simulation Cloques","RCFILM","Poudre transparente","Sang Artificiel","Spatule inox","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:null,steps:["<strong>Protection Latex</strong>. <strong>Fard rouge</strong> + <strong>Fard rouge-sang</strong> irréguliers. <em>(V2)</em> <strong>Fard noir</strong> sur le contour.","<strong>Fard jaune</strong> aux emplacements des cloques. <strong>Produit Simulation Cloques</strong> en goutte. Lisser à la spatule.","<strong>RCFILM</strong> + <strong>Poudre transparente</strong>. <em>Option cloque éclatée :</em> soulever le RCFILM sans creuser. Goutte de <strong>Sang Artificiel</strong>."],demaq:[{s:"Démaquillage",d:"Kleenex → coton <strong>Dissolvant pour colles</strong> → coton <strong>Biological cleaner</strong>."}]},
+{user:"Comment réaliser une brûlure simple ?",meta:["⏱ 50 secondes","Tenue 6h"],refs:"Fard crème rouge, rouge-sang, jaune (1003A) · Collodion officinal (2024) · Spatule inox (A013)",produits:["Fards Crème","Collodion officinal","Spatule inox","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:"Protection Latex NON requise pour la brûlure simple.",steps:["<strong>Fard rouge</strong> + <strong>Fard rouge-sang</strong> irréguliers. <strong>Fard jaune</strong> sur le pourtour.","<strong>Collodion officinal</strong> en épaisseur irrégulière au centre. Patienter le séchage.","<em>Option peau déchirée :</em> tirer sur la peau."],demaq:[{s:"Démaquillage",d:"Coton <strong>Dissolvant pour colles</strong> → coton <strong>Biological cleaner</strong>."}]},
+{user:"Comment réaliser une brûlure thermique avec cratères ?",meta:["⏱ 4 min 30s","Tenue 6h"],refs:"Protection Latex (2070) · Fard crème rouge, noir (1003A) · Latex (2009) · Éponge mousse (1055A) · Éponge hématomes (1061) · Sang Artificiel (2001N) · Simulation cloques (2150)",produits:["Protection Latex","Fards Crème","Latex","Éponge mousse","Éponge hématomes","Produit Simulation Cloques","Sang Artificiel","Spatule inox","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:null,steps:["<strong>Protection Latex</strong>. <strong>Fard rouge</strong>. Fine couche de <strong>Latex</strong> à l'éponge mousse. Sécher puis <strong>déchirer</strong> pour former des cratères.","Extérieur à l'<strong>éponge hématomes</strong> + <strong>Fard noir</strong>. Intérieur des cratères en <strong>Fard rouge</strong> nuancé.","<strong>Produit Cloques</strong> dans les cratères. <strong>Sang Artificiel</strong>."],demaq:[{s:"Démaquillage",d:"Kleenex → coton <strong>Dissolvant pour colles</strong> → coton <strong>Biological cleaner</strong>. Éponge hématomes : savon solide."}]},
+{user:"Comment simuler un coup de soleil ?",meta:["⏱ 1 min 35s","Tenue 8h"],refs:"Fard crème rouge (1003A) · Éponge mousse (1055A) · Biological cleaner (1034)",produits:["Fards Crème","Éponge mousse","Biological Cleaner"],warning:"Protection Latex NON requise.",steps:["<strong>Fard rouge</strong> à l'<strong>éponge mousse</strong> sur tout le visage — ne pas oublier les oreilles."],demaq:[{s:"Démaquillage",d:"Coton imbibé de <strong>Biological cleaner</strong>. Éponge mousse : savon solide."}]},
+{user:"Comment simuler une cyanose ?",meta:["⏱ 3 min 10s","Tenue 8h"],refs:"Fard crème pâleur + bleu (1003A) · Éponge mousse (1055A) · Biological cleaner (1034)",produits:["Fards Crème","Éponge mousse","Biological Cleaner"],warning:"Protection Latex NON requise.",steps:["Nettoyer la peau au coton imbibé de <strong>Biological cleaner</strong>.","<strong>Fard pâleur</strong> à l'éponge mousse — visage, cou, oreilles.","<strong>Fard bleu</strong> sur les ailes du nez, les lobes d'oreilles et les lèvres."],demaq:[{s:"Démaquillage",d:"Coton imbibé de <strong>Biological cleaner</strong>. Éponge mousse : savon solide."}]},
+{user:"Comment simuler un malaise ?",meta:["⏱ 4 min 45s","Tenue 8h"],refs:"Fard crème pâleur + kaki (1003/A) · Éponge mousse (1055A) · Éponge hématomes (1061A) · Liquide transpiration (2029) · Biological cleaner (1034)",produits:["Fards Crème","Éponge mousse","Éponge hématomes","Liquide transpiration","Biological Cleaner"],warning:"Protection Latex NON requise.",steps:["<strong>Fard pâleur</strong> à l'éponge mousse — visage, cou, oreilles, lèvres.","<strong>Fard kaki</strong> dans les cernes.","<strong>Liquide transpiration</strong> sur le front à l'éponge hématomes."],demaq:[{s:"Démaquillage",d:"Liquide transpiration : eau. Fards : coton <strong>Biological cleaner</strong>. Éponges : savon solide."}]},
+{user:"Comment simuler un doigt coupé, éclaté ou fracturé ?",meta:["⏱ Coupé 3min10 · Éclaté 4min05 · Fracturé 4min20","Tenue 6h"],refs:"Protection Latex (2070) · Plasto-Nat (2027) · Fard crème jaune, bleu, rouge-sang (1003 CM2) · Sang gélifié (2130) · Sang Artificiel (2001N) · Pinceau N°2 (3001)",produits:["Protection Latex","Plasto-Nat","Fards Crème","Sang Gélifié","Sang Artificiel","Spatule inox","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:null,steps:["<strong>Protection Latex</strong>. Cylindre de <strong>Plasto-Nat</strong>. <strong>Fard jaune</strong> sur le doigt. <strong>Fard bleu</strong> + <strong>Fard rouge-sang</strong> sur le pourtour. Positionner en continuité de la phalange.","Étirer du centre vers l'extérieur. Colorer l'intérieur au <strong>Pinceau N°2</strong> — ne pas colorer les lèvres. <strong>Sang Gélifié</strong>. <em>Effet os :</em> galette de Plasto-Nat au fond.","<strong>Sang Artificiel</strong>. <em>Éclaté :</em> Fard bleu + rouge-sang, ongle bleu. <em>Fracturé :</em> soulever l'os, répartir le Sang Gélifié."],demaq:DMQ_STD},
+{user:"Comment réaliser des éraflures ?",meta:["⏱ 1 min 08s","Tenue 8h — réutilisable"],refs:"Protection Latex (2070) · Fard crème rouge-sang (1003/A) · Latex (2009) · Éponge hématomes (1061) · Éponge mousse (1055A) · Terre sèche + gravillons",produits:["Protection Latex","Fards Crème","Latex","Éponge mousse","Éponge hématomes","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:null,steps:["<strong>Protection Latex</strong>. Griffures à l'<strong>éponge hématomes</strong> imbibée de <strong>Fard rouge-sang</strong>.","Fine couche de <strong>Latex</strong> à l'éponge mousse. Attendre le séchage.","Latex sec et <strong>collant</strong> → plaquer sur la terre et les gravillons."],demaq:[{s:"Démaquillage",d:"Kleenex → coton <strong>Dissolvant pour colles</strong> → coton <strong>Biological cleaner</strong>. Éponge hématomes : savon solide."}]},
+{user:"Comment réaliser une morsure ?",meta:["⏱ 2 min 10s","Tenue 8h"],refs:"Plasto-Nat (2027) · Fard crème bleu, rouge-sang (1003/A) · Sang artificiel (2001N) · Pinceau N°2 (3001)",produits:["Plasto-Nat","Fards Crème","Sang Artificiel","Spatule inox","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:"Bien tendre la peau avant l'application.",steps:["Deux noisettes de <strong>Plasto-Nat</strong>. Lisser. <strong>Fard bleu</strong> + <strong>Fard rouge-sang</strong>.","Petit trou à la spatule dans chaque noisette. Colorer l'intérieur au <strong>Pinceau N°2</strong>.","<strong>Sang Artificiel</strong> dans les cratères."],demaq:DMQ_STD},
+{user:"Comment réaliser un nez cassé ?",meta:["⏱ Nez 1 : 2min10s · Nez 2 : 3min43s","Tenue 8h"],refs:"Plasto-Nat (2027) · Fard crème bleu, rouge-sang (1003/A) · Sang artificiel (2001N) · Spatule inox · Pinceau N°2",produits:["Plasto-Nat","Fards Crème","Sang Artificiel","Spatule inox","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:null,steps:["<strong>Nez 1 :</strong> cylindre horizontal. <strong>Nez 2 :</strong> cylindre diagonal. Lisser. Incision à la spatule.","<strong>Fard bleu</strong> diffusé sur le nez. <strong>Fard rouge-sang</strong> au centre et dans les cernes. Intérieur au <strong>Pinceau N°2</strong>.","<strong>Sang Artificiel</strong>. Estomper au kleenex, faire couler."],demaq:DMQ_STD},
+{user:"Comment réaliser un œil crevé ?",meta:["⏱ 4 min 40s","Tenue 6h"],refs:"Plasto-Nat (2027) · Fard crème jaune, bleu, rouge-sang (1003 CM2) · Sang gélifié (2130) · Sang artificiel (2001N) · Pinceau N°2 · Sparadrap",produits:["Plasto-Nat","Fards Crème","Sang Gélifié","Sang Artificiel","Spatule inox","Sparadrap","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:"Appliquer un sparadrap pour fermer l'œil AVANT toute application.",steps:["<strong>Sparadrap</strong> sur l'œil. Cylindres de <strong>Plasto-Nat</strong> sur l'orbite supérieure et inférieure.","Coloration : <strong>Fard jaune</strong> → <strong>Fard bleu</strong> → <strong>Fard rouge-sang</strong>. Intérieur au <strong>Pinceau N°2</strong>.","<strong>Sang Gélifié</strong>. <strong>Sang Artificiel</strong>. Estomper."],demaq:DMQ_STD},
+{user:"Comment réaliser une lèvre éclatée ?",meta:["⏱ Lèvre 1 : 3min38s · Lèvre 2 : 2min18s","Tenue 3h"],refs:"Plasto-Nat (2027) · Fard crème jaune, bleu, rouge-sang (1003 CM2) · Sang gélifié (2130) · Sang artificiel (2001N) · Gelée démaquillante (1041) · Pinceau N°2",produits:["Plasto-Nat","Fards Crème","Sang Gélifié","Sang Artificiel","Gelée Démaquillante","Spatule inox","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:"Demander au modèle de tendre les lèvres en faisant un demi-sourire.",steps:["Cylindre de <strong>Plasto-Nat</strong>. <em>Lèvre 1 :</em> second cylindre en V. <em>Lèvre 2 :</em> incision spatule dans Gelée démaquillante.","Coloration : <strong>Fard jaune</strong> → <strong>Fard bleu</strong> → <strong>Fard rouge-sang</strong>. <strong>Pinceau N°2</strong>. <strong>Sang Gélifié</strong>.","<strong>Sang Artificiel</strong>. Estomper."],demaq:[{s:"Démaquillage",d:"Spatule puis kleenex → coton <strong>Dissolvant pour colles</strong> → coton <strong>Biological cleaner</strong>. Pinceau : Nettoyant pinceaux."}]},
+{user:"Comment réaliser une plaie à l'abdomen avec éviscération ?",meta:["⏱ 10 min 05s","Tenue 4h"],refs:"Protection Latex (2070) · Simulation Peau (2180) · Latex (2010) · Fard crème rouge-sang (1003A) · Poudre transparente (1062) · Houppe (1059) · Pinceau N°6 (3003) · Sang Artificiel (2001N) · Sparadrap · Sèche-cheveux",produits:["Protection Latex","Simulation Peau","Latex","Fards Crème","Poudre transparente","Sang Artificiel","Éponge mousse","Spatule inox","Sparadrap","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:"Recouvrir le nombril avec un sparadrap AVANT. Protection Latex dans le sens des poils.",steps:["<strong>Sparadrap</strong> sur le nombril. <strong>Protection Latex</strong> dans le sens des poils.","<strong>Produit Simulation Peau</strong> en forme ovale.","<strong>Latex</strong> à l'éponge mousse (couche opaque, déborder légèrement). Sécher. 2e couche. Sécher. 3e couche. Sécher.","<strong>Poudre transparente</strong> à la houppe. Soulever le Latex, incision aux ciseaux.","<strong>Pinceau N°6</strong> + <strong>Fard rouge-sang</strong> très intense à l'intérieur. <strong>Sang Artificiel</strong>. Faire déborder. Absorber le surplus.","Disposer la <strong>viscère</strong> dans la plaie."],demaq:DMQ_LATEX},
+{user:"Comment réaliser une plaie à la main ?",meta:["⏱ Main 1 : 2min33s · Main 2 : 3min03s · Main 3 : 2min53s","Tenue 4h"],refs:"Protection Latex (2070) · Plasto-Nat (2027) · Sealor (2035) · Fard crème jaune, bleu, rouge-sang · Sang gélifié · Sang artificiel · Pinceau N°2 · RCFILM (main 3)",produits:["Protection Latex","Plasto-Nat","Sealor","Fards Crème","Sang Gélifié","Sang Artificiel","RCFILM","Spatule inox","Gelée Démaquillante","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:null,steps:["<strong>Protection Latex</strong>. Cylindre de <strong>Plasto-Nat</strong>. Incision à la spatule (Gelée démaquillante). <strong>Sealor</strong> ou <strong>RCFILM</strong> — tapoter.","Coloration : <strong>Fard jaune</strong> → <strong>Fard bleu</strong> → <strong>Fard rouge-sang</strong>. Refaire l'incision. Soulever par petits mouvements oscillants — peau arrachée.","<strong>Sang Gélifié</strong>. <strong>Sang Artificiel</strong>, faire couler."],demaq:[{s:"Démaquillage",d:"Spatule puis kleenex → coton <strong>Dissolvant pour colles</strong> → coton <strong>Biological cleaner</strong>. Pinceau : Nettoyant pinceaux."}]},
+{user:"Comment réaliser une plaie à la paupière ?",meta:["⏱ 34 secondes","Tenue 3h"],refs:"Fard crème rouge-sang (1003A) · Sang artificiel (2001N) · Pinceau N°2 · Biological cleaner (1034)",produits:["Fards Crème","Sang Artificiel","Nettoyant Pinceaux","Biological Cleaner"],warning:"La plus rapide des réalisations (34s). Pas de Plasto-Nat.",steps:["<strong>Pinceau N°2</strong> + <strong>Fard rouge-sang</strong> dans le pli de la paupière.","<strong>Sang Artificiel normal</strong>. Estomper au kleenex."],demaq:[{s:"Démaquillage",d:"Coton imbibé de <strong>Biological cleaner</strong>. Pinceau : Nettoyant pinceaux."}]},
+{user:"Comment réaliser une plaie à la tête ?",meta:["⏱ 2 min 43s","Tenue 4h"],refs:"Plasto-Nat (2027) · Fard crème bleu, rouge-sang (1003 CM2) · Sang gélifié (2130) · Sang artificiel (2001N) · Pinceau N°2",produits:["Plasto-Nat","Fards Crème","Sang Gélifié","Sang Artificiel","Spatule inox","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:"Pas de Protection Latex dans la fiche pour cet effet.",steps:["Cylindre de <strong>Plasto-Nat</strong> en cercle. Lisser. <strong>Fard bleu</strong>.","Colorer l'intérieur au <strong>Pinceau N°2</strong>. <strong>Sang Gélifié</strong>.","<strong>Sang Artificiel normal</strong>. Faire couler."],demaq:[{s:"Démaquillage",d:"Spatule puis kleenex → coton <strong>Biological cleaner</strong>. Pinceau : Nettoyant pinceaux."}]},
+{user:"Comment réaliser une plaie grave à l'avant-bras ?",meta:["⏱ 3 min 17s","Tenue 4h — résiste aux compressions"],refs:"Protection Latex (2070) · Plasto-Nat (2027) · Sealor (2035) · Fard crème jaune, bleu, rouge-sang · Sang gélifié · Sang artificiel · Pinceau N°2",produits:["Protection Latex","Plasto-Nat","Sealor","Fards Crème","Sang Gélifié","Sang Artificiel","Spatule inox","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:null,steps:["<strong>Protection Latex</strong>. Deux cylindres de Plasto-Nat formant un ovale. <strong>Sealor</strong> — tapoter.","Coloration : <strong>Fard jaune</strong> → <strong>Fard bleu</strong> → <strong>Fard rouge-sang</strong>. Intérieur au <strong>Pinceau N°2</strong>. <strong>Sang Gélifié</strong>.","<strong>Sang Artificiel</strong>. Estomper."],demaq:DMQ_STD},
+{user:"Comment réaliser une plaie hémorragique avec tubulure ?",meta:["⏱ 3 min 17s","Tenue 4h"],refs:"Protection Latex (2070) · Tubulure (A008B) · Plasto-Nat (2027) · RCFILM (RC001) · Fard crème jaune, bleu, rouge-sang · Sang gélifié · Sang artificiel · Sparadrap",produits:["Protection Latex","Plasto-Nat","RCFILM","Fards Crème","Sang Gélifié","Sang Artificiel","Tubulure","Sparadrap","Spatule inox","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:"La Tubulure simule une hémorragie active en continu.",steps:["<strong>Protection Latex</strong>. <strong>Tubulure</strong> fixée avec <strong>sparadrap</strong>. Deux cylindres de <strong>Plasto-Nat</strong>. <strong>RCFILM</strong>.","Intérieur au <strong>Pinceau N°2</strong>. Coloration externe : jaune → bleu → rouge-sang. <strong>Sang Gélifié</strong>."],demaq:DMQ_STD},
+{user:"Comment réaliser une plaie simple, avec corps étranger ou grave ?",meta:["⏱ Simple 3min22s · Corps étranger 2min · Grave 35s","Tenue 4h"],refs:"Protection Latex (2070) · Plasto-Nat (2027) · Sealor (2035) · Fard crème jaune, bleu, rouge-sang · Sang gélifié · Sang artificiel · Gelée démaquillante",produits:["Protection Latex","Plasto-Nat","Sealor","Fards Crème","Sang Gélifié","Sang Artificiel","Gelée Démaquillante","Spatule inox","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:null,steps:["<strong>Base :</strong> Protection Latex → Plasto-Nat → incision spatule (Gelée démaquillante) → Sealor.","Coloration : <strong>Fard jaune</strong> → <strong>Fard bleu</strong> → <strong>Fard rouge-sang</strong>. Refaire l'incision. <strong>Sang Artificiel</strong>. Estomper. → <em>Plaie simple.</em>","<strong>→ Corps étranger :</strong> spatule à 45°, soulever la lèvre. Sang Gélifié + Sang Artificiel. Glisser le corps étranger.","<strong>→ Plaie grave :</strong> déchirer le Plasto-Nat — peau arrachée. Éponger pour révéler le Sang Gélifié."],demaq:DMQ_STD},
+{user:"Comment réaliser une plaie thoracique soufflante ?",meta:["⏱ 2 min 17s","Tenue 4h"],refs:"Plasto-Nat (2027) · Fard crème jaune, bleu, rouge-sang · Sang gélifié · Sang artificiel liquide (2001L) · Produit cloques · Comprimé effervescent · Pinceau N°2",produits:["Plasto-Nat","Fards Crème","Sang Gélifié","Sang Artificiel","Produit Simulation Cloques","Spatule inox","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:"Déclencher l'effet effervescent en temps réel.",steps:["Cylindre de <strong>Plasto-Nat</strong> en cercle sur le thorax. Coloration : jaune → bleu → rouge-sang. Intérieur au <strong>Pinceau N°2</strong>.","<strong>Produit Cloques</strong> au fond du cratère. <strong>Comprimé effervescent réduit en poudre</strong>.","<strong>Sang Artificiel liquide</strong> en plusieurs gouttes. Laisser la réaction se faire."],demaq:DMQ_STD},
+{user:"Comment poser une prothèse MaqPro ?",meta:["Tenue 2h"],refs:"Prothèse MaqPro · RCFILM (RC001) · Colle prothèses (PRCO) · Sang artificiel épais (2002E) · Gelée démaquillante (1041) · Biological cleaner (1034) · Coton tige",produits:["RCFILM","Colle Prothèses","Sang Artificiel","Gelée Démaquillante","Biological Cleaner"],warning:null,steps:["<strong>Préparation :</strong> RCFILM recto/verso — sécher entre les couches. <strong>Colle Prothèses</strong> au coton tige sur le pourtour. Attendre la <strong>transparence</strong>.","<strong>Pose :</strong> appliquer. Bien appuyer sur les bords. <strong>Sang Artificiel épais</strong>."],demaq:[{s:"Peau",d:"Gelée Démaquillante → coton <strong>Biological cleaner</strong>."},{s:"Prothèse",d:"Voir fiche Entretien prothèse."}]},
+{user:"Comment entretenir une prothèse MaqPro ?",meta:["Prothèse réutilisable"],refs:"Eau froide · Papier absorbant",produits:[],warning:null,steps:["<strong>Tremper</strong> dans de l'<strong>eau froide</strong> pour retirer le Sang Artificiel.","<strong>Frotter délicatement</strong> — ATTENTION : la prothèse se fragilise dans l'eau.","<strong>Sécher au papier absorbant</strong>.","<strong>Remettre dans son emballage</strong> d'origine."],demaq:[]},
+{user:"Comment préparer un cylindre de Plasto-Nat ?",meta:["Technique de base"],refs:"Plasto-Nat (2027)",produits:["Plasto-Nat"],warning:null,steps:["Façonner en « boulette ». Ramollir entre les doigts — sauf s'il est déjà mou.","Rouler en cylindre sur la <strong>partie osseuse de la paume de la main</strong>.","Le cylindre est prêt."],demaq:[]},
+{user:"Comment poser un cylindre de Plasto-Nat sur la peau ?",meta:["Technique de base"],refs:"Protection Latex (2070) · Plasto-Nat (2027)",produits:["Protection Latex","Plasto-Nat"],warning:null,steps:["<strong>Règle fondamentale : toujours travailler sur une peau tendue.</strong>","<strong>Protection Latex</strong> — vérifier le séchage complet.","Lisser parfaitement les bords vers l'extérieur — garder un mince volume au centre."],demaq:[]},
+{user:"Comment préparer une viscère en Latex ?",meta:["⏱ 6 min 15s","Réalisation hors peau — réutilisable"],refs:"Latex (2009) · Coupelle (A009) · Éponge mousse (1055A) · Fard Pâleur (1003A) · Sang Artificiel épais (2002E) · Sèche-cheveux + coton hydrophile",produits:["Latex","Éponge mousse","Fards Crème","Sang Artificiel"],warning:"Réalisation entièrement sur une surface plane, hors de la peau.",steps:["Latex dans une coupelle. Éponge mousse imbibée → <strong>20 × 30 cm</strong> en couche épaisse. Sécher. 2e couche. Sécher. 3e couche. Sécher.","<strong>Boudins de coton hydrophile</strong> irréguliers. Soulever le Latex pour envelopper. Façonner en forme irrégulière.","<strong>Fard pâleur</strong>. <strong>Sang Artificiel épais</strong>."],demaq:[{s:"Conservation",d:"Réutilisable — à l'abri de la chaleur et du froid."}]},
+{user:"Comment réaliser un scalp ?",meta:["⏱ 10 min 23s"],refs:"Protection Latex (2070) · Gelée démaquillante (1041) · Simulation Peau (2180) · Latex (2009) · Poudre transparente (1062) · Houppe (1059) · Éponge mousse · Fard rouge-sang (1003A) · Pinceau N°6 (3003) · Sang Artificiel (2002N) · Sèche-cheveux · Ciseaux",produits:["Protection Latex","Simulation Peau","Latex","Poudre transparente","Fards Crème","Sang Artificiel","Gelée Démaquillante","Éponge mousse","Spatule inox","Nettoyant Pinceaux","Dissolvant pour Colles et Latex","Biological Cleaner"],warning:"Protéger les yeux lors du séchage. Gelée Démaquillante sur la racine des cheveux et les sourcils AVANT.",steps:["<strong>Protection Latex</strong> sur le front. <strong>Gelée Démaquillante</strong> sur la racine des cheveux et les sourcils.","<strong>Produit Simulation Peau</strong> en large bande — zone neutre entre cheveux et sourcils.","<strong>Latex</strong> à l'éponge mousse (couche épaisse). Sécher (protéger les yeux). 2e couche. Sécher. 3e couche. Sécher.","<strong>Poudre transparente</strong> à la houppe. Soulever le Produit peau, incision aux ciseaux.","Soulever le Latex. <strong>Pinceau N°6</strong> + <strong>Fard rouge-sang</strong>. <strong>Sang Artificiel normal</strong>. Diffuser, recouvrir. Astuce : possibilité de <strong>suturer</strong> le Produit peau."],demaq:DMQ_LATEX},
+{user:"Comment entretenir les pinceaux MaqPro ?",meta:["Résultat : sec, propre et désinfecté"],refs:"Nettoyant pinceaux (Réf. 2040) · Coupelle (Réf. A009)",produits:["Nettoyant Pinceaux"],warning:null,steps:["Essuyer avec un kleenex. <strong>Nettoyant pinceaux</strong> dans une coupelle. Tremper quelques secondes.","Égoutter puis sécher dans un kleenex. Pinceau sec, propre et désinfecté. Nettoyer la coupelle.","<em>Éponges :</em> savon solide. <em>Spatule :</em> Dissolvant pour colles."],demaq:[]}
+];
+
+let n=0,busy=false,history=[];
+const chat=document.getElementById('chat');
+
+function addUser(t){const d=document.createElement('div');d.className='msg user';const av=document.createElement('div');av.className='av';av.textContent='Vous';const b=document.createElement('div');b.className='bub';b.textContent=t;d.appendChild(av);d.appendChild(b);chat.appendChild(d);chat.scrollTop=chat.scrollHeight;}
+function addBot(h){const d=document.createElement('div');d.className='msg bot';const av=document.createElement('div');av.className='av';av.textContent='MQ';const b=document.createElement('div');b.className='bub';b.innerHTML=h;d.appendChild(av);d.appendChild(b);chat.appendChild(d);chat.scrollTop=chat.scrollHeight;}
+function showTyping(){const d=document.createElement('div');d.className='msg bot';d.id='typ';const av=document.createElement('div');av.className='av';av.textContent='MQ';const t=document.createElement('div');t.className='typing';t.innerHTML='<span></span><span></span><span></span>';d.appendChild(av);d.appendChild(t);chat.appendChild(d);chat.scrollTop=chat.scrollHeight;}
+
+function toggleProds(id){
+  const bl=document.getElementById('pb-'+id),bt=document.getElementById('bt-'+id);
+  if(!bl)return;const v=bl.style.display!=='none';
+  bl.style.display=v?'none':'block';
+  bt.textContent=v?'▸ Voir les spécificités produits':'▾ Masquer les spécificités';
+}
+
+function build(sc,id){
+  let h='';
+  h+=`<div class="meta">`;for(const m of sc.meta)h+=`<span class="mpill">${m}</span>`;h+=`</div>`;
+  h+=`<span class="sl">Références produits</span><div class="refs-text">${sc.refs}</div>`;
+  if(sc.warning)h+=`<div class="note"><span>${sc.warning}</span></div>`;
+  if(sc.produits&&sc.produits.length){
+    h+=`<button class="toggle-btn" id="bt-${id}" onclick="toggleProds('${id}')">▸ Voir les spécificités produits</button>`;
+    h+=`<div id="pb-${id}" style="display:none"><span class="sl">Spécificités des produits</span><div class="prod-block">`;
+    for(const p of sc.produits){const desc=PRODS[p]||'';if(desc)h+=`<div class="prod-row"><strong>${p}</strong><br><span>${desc}</span></div>`;}
+    h+=`</div></div>`;
+  }
+  h+=`<span class="sl">Protocole étape par étape</span>`;
+  for(let i=0;i<sc.steps.length;i++)h+=`<span class="step"><span style="font-size:10px;font-weight:600;color:#A09890;margin-right:5px">${i+1}.</span>${sc.steps[i]}</span>`;
+  if(sc.demaq&&sc.demaq.length){h+=`<span class="sl">Démaquillage</span><div class="demaq-block">`;for(const d of sc.demaq)h+=`<div style="margin-bottom:5px"><strong>${d.s} —</strong> ${d.d}</div>`;h+=`</div>`;}
+  return h;
+}
+
+function run(idx){
+  if(busy)return;
+  document.querySelectorAll('.chip').forEach(c=>c.disabled=true);
+  const sc=S[idx];addUser(sc.user);history.push({role:'user',content:sc.user});
+  setTimeout(()=>{showTyping();setTimeout(()=>{document.getElementById('typ')?.remove();n++;addBot(build(sc,n));history.push({role:'assistant',content:'[protocole affiché]'});document.querySelectorAll('.chip').forEach(c=>c.disabled=false);},800);},200);
+}
+
+async function sendFree(){
+  const inp=document.getElementById('inp');
+  const txt=inp.value.trim();
+  if(!txt||busy)return;
+  inp.value='';inp.style.height='auto';setBusy(true);
+  addUser(txt);history.push({role:'user',content:txt});showTyping();
+  try{
+    const resp=await fetch('/api/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM,messages:history})
+    });
+    const data=await resp.json();
+    const reply=data.content&&data.content[0]&&data.content[0].text?data.content[0].text:'Désolé, je n\'ai pas pu générer de réponse.';
+    document.getElementById('typ')?.remove();
+    addBot(reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>'));
+    history.push({role:'assistant',content:reply});
+  }catch(e){
+    document.getElementById('typ')?.remove();
+    addBot('Une erreur est survenue. Vérifiez votre connexion.');
+  }
+  setBusy(false);
+}
+
+function setBusy(b){busy=b;document.getElementById('send-btn').disabled=b;document.querySelectorAll('.chip').forEach(c=>c.disabled=b);}
+const inp=document.getElementById('inp');
+inp.addEventListener('input',()=>{inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,80)+'px';});
+inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendFree();}});
+addBot('Bonjour ! Je suis votre assistant MaqPro spécialisé dans la réalisation de maquillage effets spéciaux et secourisme.<br><br>Je peux vous guider sur les <strong>protocoles d\'application</strong> et les <strong>précautions d\'emploi</strong> et vous aider à choisir les bons produits pour un effet précis.<br><br>Utilisez les raccourcis ci-dessous ou posez directement votre question.');
+</script>
+</body>
+</html>
