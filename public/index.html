@@ -66,6 +66,16 @@ header{width:100%;max-width:800px;display:flex;align-items:center;gap:12px;margi
 #send-btn:hover{opacity:.8}
 #send-btn:disabled{opacity:.35;cursor:not-allowed}
 footer{width:100%;max-width:800px;text-align:center;margin-top:12px;font-size:11px;color:var(--text-tertiary)}
+
+.free-section{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--text-tertiary);display:block;margin:10px 0 4px;padding-bottom:3px;border-bottom:1px solid var(--border)}
+.free-section:first-child{margin-top:0}
+.free-subsection{font-size:12px;font-weight:600;display:block;margin:7px 0 3px;color:var(--text)}
+.free-step{display:block;padding:2px 0 3px 13px;border-left:2px solid var(--border);margin-bottom:3px;font-size:13px}
+.free-stepnum{font-size:10px;font-weight:600;color:var(--text-tertiary);margin-right:6px}
+.free-li{display:block;padding-left:14px;margin-bottom:2px;font-size:13px}
+.choice-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.choice-btn{padding:5px 12px;border:1px solid var(--border);border-radius:20px;font-size:12px;cursor:pointer;background:var(--surface);color:var(--text-secondary);font-family:'Inter',system-ui,sans-serif;transition:all .15s}
+.choice-btn:hover{background:#F0EDE8;border-color:#C8C3BB;color:var(--text)}
 </style>
 </head>
 <body>
@@ -197,19 +207,31 @@ const S=[
 ];
 
 function parseMarkdown(text){
-  return text
-    .replace(/^### (.+)$/gm,"<strong style='font-size:12.5px;display:block;margin:8px 0 3px'>$1</strong>")
-    .replace(/^## (.+)$/gm,"<strong style='font-size:13px;display:block;margin:10px 0 4px;border-bottom:1px solid #E5E2DC;padding-bottom:3px'>$1</strong>")
-    .replace(/^# (.+)$/gm,"<strong style='font-size:13.5px;display:block;margin:10px 0 4px'>$1</strong>")
-    .replace(/\*\*\*(.*?)\*\*\*/g,"<strong><em>$1</em></strong>")
-    .replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>")
-    .replace(/\*(.*?)\*/g,"<em>$1</em>")
-    .replace(/^\|.*\|$/gm,"")
-    .replace(/^\|[-| :]+\|$/gm,"")
-    .replace(/^[-*] (.+)$/gm,"<span style='display:block;padding-left:14px;margin-bottom:2px'>� $1</span>")
-    .replace(/^\d+[.)] (.+)$/gm,"<span style='display:block;padding-left:14px;margin-bottom:2px'>$1</span>")
-    .replace(/^---+$/gm,"<hr style='border:none;border-top:1px solid #E5E2DC;margin:8px 0'>")
-    .replace(/\n\n/g,"<br>").replace(/\n/g,"<br>").replace(/(<br>){3,}/g,"<br><br>");
+  var blocks=[];
+  text=text.replace(/\[CHOIX:\s*([^\]]+)\]/g,function(m,opts){
+    var i=blocks.length;
+    blocks.push(opts.split('|').map(function(o){return o.trim();}).filter(Boolean));
+    return '__C'+i+'__';
+  });
+  var h=text
+    .replace(/^\|.*\|$/gm,'').replace(/^\|[-| :]+\|$/gm,'')
+    .replace(/^---+$/gm,'')
+    .replace(/^## (.+)$/gm,'<span class="free-section">$1</span>')
+    .replace(/^### (.+)$/gm,'<span class="free-subsection">$1</span>')
+    .replace(/^\*\*\*(.*?)\*\*\*/g,'<strong><em>$1</em></strong>')
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g,'<em style="color:#6B6560">$1</em>')
+    .replace(/^(\d+)\. (.+)$/gm,'<span class="free-step"><span class="free-stepnum">$1.</span>$2</span>')
+    .replace(/^- (.+)$/gm,'<span class="free-li">$1</span>')
+    .replace(/\n\n/g,'<br>').replace(/\n/g,'<br>')
+    .replace(/(<br>){3,}/g,'<br><br>');
+  blocks.forEach(function(opts,i){
+    var btns=opts.map(function(o){
+      return '<button class="choice-btn" onclick="sendChoice(this.textContent)">'+o+'</button>';
+    }).join('');
+    h=h.replace('__C'+i+'__','<div class="choice-row">'+btns+'</div>');
+  });
+  return h;
 }
 
 let n=0,busy=false,history=[];
@@ -260,7 +282,7 @@ async function sendFree(){
     const resp=await fetch('/api/chat',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM,messages:history})
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:SYSTEM,messages:history})
     });
     const data=await resp.json();
     const reply=data.content&&data.content[0]&&data.content[0].text?data.content[0].text:'Désolé, je n\'ai pas pu générer de réponse.';
@@ -274,6 +296,7 @@ async function sendFree(){
   setBusy(false);
 }
 
+function sendChoice(txt){document.getElementById('inp').value=txt;sendFree();}
 function setBusy(b){busy=b;document.getElementById('send-btn').disabled=b;document.querySelectorAll('.chip').forEach(c=>c.disabled=b);}
 const inp=document.getElementById('inp');
 inp.addEventListener('input',()=>{inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,80)+'px';});
