@@ -236,7 +236,7 @@ function parseMarkdown(text){
     h=h.replace('__C'+i+'__','<div class="choice-row">'+btns+'</div>');
   });
   // Badge HORS SOURCE
-  h = h.replace(/\[HORS SOURCE\]/g, '<a class="hors-source" href="mailto:cinerecup@gmail.com">⚠ Hors source · Contactez Ciné Récup'</a>');
+  h = h.replace(/\[HORS SOURCE\]/g, '<a class="hors-source" href="mailto:cinerecup@gmail.com">⚠ Hors source · Contactez Ciné Récup\'</a>');
   return h;
 }
 
