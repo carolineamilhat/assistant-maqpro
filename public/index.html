@@ -196,6 +196,22 @@ const S=[
 {user:"Comment entretenir les pinceaux MaqPro ?",meta:["Résultat : sec, propre et désinfecté"],refs:"Nettoyant pinceaux (Réf. 2040) · Coupelle (Réf. A009)",produits:["Nettoyant Pinceaux"],warning:null,steps:["Essuyer avec un kleenex. <strong>Nettoyant pinceaux</strong> dans une coupelle. Tremper quelques secondes.","Égoutter puis sécher dans un kleenex. Pinceau sec, propre et désinfecté. Nettoyer la coupelle.","<em>Éponges :</em> savon solide. <em>Spatule :</em> Dissolvant pour colles."],demaq:[]}
 ];
 
+function parseMarkdown(text){
+  return text
+    .replace(/^### (.+)$/gm,"<strong style='font-size:12.5px;display:block;margin:8px 0 3px'>$1</strong>")
+    .replace(/^## (.+)$/gm,"<strong style='font-size:13px;display:block;margin:10px 0 4px;border-bottom:1px solid #E5E2DC;padding-bottom:3px'>$1</strong>")
+    .replace(/^# (.+)$/gm,"<strong style='font-size:13.5px;display:block;margin:10px 0 4px'>$1</strong>")
+    .replace(/\*\*\*(.*?)\*\*\*/g,"<strong><em>$1</em></strong>")
+    .replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>")
+    .replace(/\*(.*?)\*/g,"<em>$1</em>")
+    .replace(/^\|.*\|$/gm,"")
+    .replace(/^\|[-| :]+\|$/gm,"")
+    .replace(/^[-*] (.+)$/gm,"<span style='display:block;padding-left:14px;margin-bottom:2px'>� $1</span>")
+    .replace(/^\d+[.)] (.+)$/gm,"<span style='display:block;padding-left:14px;margin-bottom:2px'>$1</span>")
+    .replace(/^---+$/gm,"<hr style='border:none;border-top:1px solid #E5E2DC;margin:8px 0'>")
+    .replace(/\n\n/g,"<br>").replace(/\n/g,"<br>").replace(/(<br>){3,}/g,"<br><br>");
+}
+
 let n=0,busy=false,history=[];
 const chat=document.getElementById('chat');
 
@@ -249,7 +265,7 @@ async function sendFree(){
     const data=await resp.json();
     const reply=data.content&&data.content[0]&&data.content[0].text?data.content[0].text:'Désolé, je n\'ai pas pu générer de réponse.';
     document.getElementById('typ')?.remove();
-    addBot(reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>'));
+    addBot(parseMarkdown(reply));
     history.push({role:'assistant',content:reply});
   }catch(e){
     document.getElementById('typ')?.remove();
