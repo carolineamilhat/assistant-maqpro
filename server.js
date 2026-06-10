@@ -22,8 +22,10 @@ app.post('/api/chat', async (req, res) => {
       body: JSON.stringify(req.body)
     });
     const data = await response.json();
+    console.log('Réponse Anthropic:', JSON.stringify(data).substring(0, 200));
     res.json(data);
   } catch (err) {
+    console.error('Erreur fetch:', err.message);
     res.status(500).json({ error: err.message });
   }
 });
