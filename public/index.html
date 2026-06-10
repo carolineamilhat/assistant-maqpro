@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 <title>Assistant MaqPro — Protocoles d'application</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -235,7 +236,7 @@ function parseMarkdown(text){
     h=h.replace('__C'+i+'__','<div class="choice-row">'+btns+'</div>');
   });
   // Badge HORS SOURCE
-  h = h.replace(/\[HORS SOURCE\]/g, '<a class="hors-source" href="https://www.maqpro.com" target="_blank" rel="noopener">⚠ Hors source · maqpro.com</a>');
+  h = h.replace(/\[HORS SOURCE\]/g, '<a class="hors-source" href="mailto:cinerecup@gmail.com">⚠ Hors source · Contactez Ciné Récup'</a>');
   return h;
 }
 
