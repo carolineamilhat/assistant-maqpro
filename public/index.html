@@ -76,6 +76,9 @@ footer{width:100%;max-width:800px;text-align:center;margin-top:12px;font-size:11
 .choice-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .choice-btn{padding:5px 12px;border:1px solid var(--border);border-radius:20px;font-size:12px;cursor:pointer;background:var(--surface);color:var(--text-secondary);font-family:'Inter',system-ui,sans-serif;transition:all .15s}
 .choice-btn:hover{background:#F0EDE8;border-color:#C8C3BB;color:var(--text)}
+
+.hors-source{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:500;padding:2px 7px;border-radius:20px;background:#FEF3E2;color:#B45309;border:1px solid #F6C870;margin-left:4px;text-decoration:none;vertical-align:middle;white-space:nowrap}
+.hors-source:hover{background:#FDE8C0}
 </style>
 </head>
 <body>
@@ -231,6 +234,8 @@ function parseMarkdown(text){
     }).join('');
     h=h.replace('__C'+i+'__','<div class="choice-row">'+btns+'</div>');
   });
+  // Badge HORS SOURCE
+  h = h.replace(/\[HORS SOURCE\]/g, '<a class="hors-source" href="https://www.maqpro.com" target="_blank" rel="noopener">⚠ Hors source · maqpro.com</a>');
   return h;
 }
 
