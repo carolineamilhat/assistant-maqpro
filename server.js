@@ -2207,7 +2207,370 @@ RÈGLES DE FORMATAGE :
 - Étapes numérotées : 1. 2. 3.
 - Listes à tirets : - item
 - Précautions en italique : *Attention : ...*
-- Réponses concises et directement utilisables`;
+- Réponses concises et directement utilisables
+
+AFFICHAGE DES PHOTOS D'ÉTAPES :
+Les fiches MaqPro disposent de photos pour chaque étape. Quand tu présentes un protocole étape par étape pour un effet de la liste ci-dessous, affiche les photos correspondantes sous chaque étape avec un marqueur de ce format exact, sur sa propre ligne, juste après le texte de l'étape :
+[IMG: 01:3 | 01:4 | 01:5]
+Chaque référence s'écrit NUMÉRO-DE-FICHE:CLÉ (exemple : 01:3 est la photo de l'étape 3 de la fiche 01). Règles :
+- 1 à 4 références par marqueur, une seule ligne de marqueur par étape.
+- Choisis les photos dont la légende correspond à ce que tu décris. Si tu condenses plusieurs étapes, regroupe leurs photos dans le même marqueur.
+- À la fin des étapes de réalisation (avant le démaquillage), ajoute le rendu final s'il existe : [IMG: 01:F]
+- Utilise uniquement les références de la liste ci-dessous. N'invente jamais de référence. Si aucune photo ne correspond à une étape, n'affiche rien.
+- N'affiche pas de photos pour une question générale ou une question sur un produit, seulement pour un protocole ou une étape précise.
+- Ne mentionne jamais les marqueurs, les numéros de fiche ni les clés dans ton texte.
+Liste des photos disponibles (clé : légende de la photo) :
+[01] arcade eclatee
+1: Appliquer un cylindre de Plasto-Nat sur le sourcil
+2: Avec la spatule, faire une incision au centre de la réalisation
+3: Appliquer en tapotant du Fard Crème jaune sur la paupière et sous l’œil
+4: Superposer du Fard bleu
+5: Finir par du Fard rouge-sang
+6: Appliquer du Fard kaki dans le cerne afin de donner un effet « de regard fatigué »
+7: Colorer l’incision à l’aide du Pinceau N° 2 imbibé de Fard rouge-sang
+8: Faire le contour de l’œil et diffuser au doigt le trait de fard rouge-sang
+9: Tapoter l’Eponge Hématomes imbibée de Fard rouge-sang au centre de l’impact
+10: Faire couler du Sang liquide à partir du hau de la plaie en le diffusant sur la paupière
+11: Estomper le surplus de Sang
+F = rendu final ; D = visage après démaquillage
+[02] brulure chimique
+1: Appliquer une fine couche de Protection Latex
+2: Colorer l’ensemble avec du Fard rouge
+3: Etaler avec la spatule inox une fine couche de Produit Simulation Cloques
+4: Déposer sur le Produit Cloques un comprimer effervescent réduit en poudre
+5: Vaporiser de l’eau sur le comprimé
+F = rendu final
+[03] brulure grave cloques1
+1: Appliquer une fine couche de Protection Latex
+2: Tapoter irrégulièrement du Fard rouge
+3: Superposer toujours de façon irrégulière du fard rouge-sang
+4: Appliquer du fard jaune à l’endroit où vous désirez faire vos cloques
+5: Poser le Produit simulation cloques en forme de goutte sur le Fard jaune
+6: Lisser les bords des « gouttes » de Produits cloques avec la spatule
+7: Vaporiser du RCFILM sur le Produit cloques et recouvrir les cloques avec de la Poudre…
+8: Fin de la réalisation, les cloques restent e souples
+v2-1: Soulever le film de RCFILM avec la spatule. Attention à ne pas « creuser » dans le Produit…
+v2-2: Appliquer au doigt une petite goutte de Sang Artificiel dans le cratère
+v2-3: Possibilité de simuler un morceau de tissu « collé » dans le cratère
+F = rendu final
+Variantes : v2 = option cloque éclatée
+[04] brulure grave cloques2
+1: Appliquer une fine couche de Protection Latex
+2: Tapoter irrégulièrement du Fard rouge puis du fard rouge-sang
+3: Appliquer du fard noir sur le contour de la réalisation
+4: Appliquer du fard jaune à l’endroit où vous désirez faire vos cloques et poser le Produit…
+5: Lisser les bords des « gouttes » de Produits cloques avec la spatule
+6: Vaporiser du RCFILM sur le Produit cloques et recouvrir les cloques avec de la Poudre…
+7: Fin de la réalisation, les cloques restent souples. DE DONNER UN EFFET DE
+v2-1: Soulever le film de RCFILM avec la spatule. Attention à ne pas « creuser » dans le Produit…
+v2-2: Appliquer au doigt une petite goutte de Sang Artificiel dans le cratère
+v2-3: Possibilité de simuler un morceau de tissu « collé » dans le cratère
+F = rendu final
+Variantes : v2 = option cloque éclatée
+[05] brulure simple
+1: Tapoter irrégulièrement du Fard rouge puis du fard rouge-sang
+2: Colorer le pourtour avec le Fard jaune
+3: Appliquer avec la spatule du Collodion officinal en épaisseur irrégulière au centre de la…
+4: Patienter quelques instants que le Collodion sèche
+v2-1: Tirer sur la peau afin de « déchirer » le Collodion
+v2-2: Fin de la réalisation
+F = rendu final
+Variantes : v2 = évolution de la brûlure simple
+[06] brulure thermique
+1: Appliquer une fine couche de Protection Latex
+2: Etaler du Fard rouge
+3: Appliquer une fine couche de Latex avec un morceau d’éponge mousse
+4: Attendre que le Latex sèche puis le déchirer afin de former des petits l’ cratères. h
+5: Colorer l’ensemble de la réalisation sauf l’intérieur des cratères avec une éponge hématome et…
+6: Colorer de façon nuancée l’intérieur des cratères avec du Fard rouge
+7: Etaler du Produit cloques en fine couche dans les cratères
+8: Poser un peu de Sang artificiel sur le Produit cloques
+F = rendu final
+[07] coup de soleil
+1: 
+[08] cyanose
+1: Nettoyer la peau avec un coton hydrophile imbibé de Biological su cleaner. pâ
+2: A l’aide de l’éponge mousse, appliquer sur l’ensemble du visage du fard crème pâleur sans…
+3: Appliquer du fard bleu sur les ailes du nez, les lobes d’oreilles et sur les lèvres
+F = rendu final
+[09] doigt coupe
+1: Appliquer une fiche couche de Protection Latex
+2: Faire un cylindre de Plasto-Nat de la taille de la phalange
+3: Colorer le doigt avec du Fard jaune
+4: Appliquer sur le pourtour de la partie à couper du Fard bleu puis superposer du Fard…
+5: Etirer le Plasto-Nat du centre vers l’extérieur
+6: Colorer l’intérieur du cratère avec le pinceau N°2 et du Fard rouge-sang sans colorer les…
+7: Remplir le cratère de Sang gélifié et recouvrir au doigt les lèvres du Plasto- Nat
+8: Pour simuler l’os, façonner une galette de Plasto-Nat et placer la au fond du cratère,…
+9: Badigeonner l’ensemble de Sang Artificiel
+v2-1: Colorer de façon nuancée la partie inférieure de la phalange avec du Fard bleu et rouge-sang
+v2-2: Colorer l’ongle avec du Fard bleu. Pour simuler l’os, transformer la galette de Plasto-Nat en…
+v3-1: Soulever « l’os » afin de simuler la fracture
+v3-2: Répartir le Sang gélifié
+F = rendu final
+Variantes : v1 = doigt coupé ; v2 = transformation en doigt éclaté ; v3 = transformation en doigt fracturé
+[10] entretien pinceau
+1: Commencer par essuyer votre pinceau Ve avec un kleenex. co le
+2: Verser du Nettoyant pinceaux dans une coupelle et tremper votre pinceau dans le produit « les…
+3: Egoutter le pinceau puis sécher le dans un kleenex. Votre pinceau est : SEC – PROPRE et…
+4: Nettoyer la coupelle
+[11] eraflures
+1: Appliquer une fine couche de Protection latex
+2: Faire des effets de griffures à l’aide d’une éponge hématomes et de Fard rouge-sang
+3: Appliquer une fine couche de Latex à l’aide d’un morceau d’éponge mousse
+4: Attendre que le Latex sèche. Préparer de la terre sèche ainsi que des gravillons
+5: Une fois le Latex sec, il devient « collant ». Plaquer la main sur la terre et les gravillons
+F = rendu final
+[12] malaise
+1: Appliquer sur l’ensemble du visage du Fard pâleur avec une éponge mousse. Ne pas oublier le…
+2: Colorer les cernes avec du Fard kaki
+3: Appliquer sur le front du Liquide transpiration avec l’éponge hématomes
+F = rendu final
+[13] morsure
+1: Appliquer une noisette de Plasto-Nat. Lisser les bords vers l’extérieur
+2: Appliquer une seconde noisette de Plasto-Nat à quelques centimètres de la première noisette.…
+3: Colorer légèrement le Plasto-Nat avec du Fard bleu
+4: Superposer du Fard rouge-sang. Fa
+5: Faire un petit trou au centre des noisettes de Plasto-Nat
+6: s Colorer avec le pinceau N°2 l’intérieur des cratères avec du Fard rouge-sang
+7: Poser un peu de Sang artificiel dans les cratères
+F = rendu final
+[14] nez casse1
+1: Appliquer à l’horizontale un cylindre de Plasto-Nat. Lisser les bords vers l’extérieur
+2: Avec la spatule, faire une incision horizontale au centre du cylindre
+3: Colorer légèrement le Plasto-Nat avec du Fard bleu et le diffuser sur le nez
+4: Colorer le centre de la plaie avec du Fard rouge-sang. Diffuser un peu de d Fard rouge-sang…
+5: Colorer avec le pinceau N° 2 l’intérieur de l’incision avec du Fard rouge-sang
+6: Appliquer du Sang artificiel sur l’ensemble de la réalisation
+7: Estomper avec un kleenex le surplus de Sang artificiel et faire couler du Sang le long de la…
+F = rendu final
+[15] nez casse2
+1: Appliquer en diagonale un cylindre de Plasto-Nat. Lisser les bords vers l’extérieur
+2: Avec la spatule, faire une incision en diagonale au centre du cylindre
+3: Colorer légèrement le Plasto-Nat avec du Fard bleu le diffuser sur le nez
+4: Colorer le centre de la plaie avec du Fard rouge-sang. Diffuser un peu de Fard rouge-sang dans…
+5: Colorer avec le pinceau N° 2 l’intérieur de l’incision avec du Fard rouge-sang
+6: Appliquer du Sang artificiel sur l’ensemble de la réalisation
+7: Estomper avec un kleenex le surplus de Sang artificiel et faire couler du Sang le long de la…
+F = rendu final
+[16] oeil creve
+1: Appliquer un morceau de sparadrap afin de « fermer » l’œil
+2: Appliquer un mince cylindre de Plasto- Nat sur la partie supérieure de l’orbite. Etaler les…
+3: Appliquer un autre mince cylindre de Plasto-Nat sur la partie inférieure de l’orbite de l’œil…
+4: Colorer la partie externe de la plaie avec du Fard jaune puis superposer du d Fard bleu et…
+5: Colorer avec le pinceau N° 2 l’intérieur de la plaie avec du Fard rouge-sang
+6: Remplir le cratère avec du Sang Gélifié
+7: Badigeonner la plaie avec du Sang artificiel puis estomper le surplus avec un kleenex
+F = rendu final
+[17] plaie levre1
+1: Appliquer un mince cylindre de Plasto-Nat sur la lèvre supérieure. Lisser les bords du…
+2: Appliquer un second cylindre de Plasto-Nat pour former un « ». Demander au modèle de tendre…
+3: Commencer la coloration externe avec du Fard jaune et superposer du Fard bleu
+4: Terminer la coloration par du Fard rouge-sang. Remplir le cratère de Fard rouge-sang avec le…
+5: Remplir le cratère de Sang gélifié
+6: Appliquer du Sang artificiel sur l’ensemble de la réalisation
+F = rendu final ; D = visage après démaquillage
+[18] plaie levre2
+1: Appliquer un mince cylindre de Plasto-Nat sur la lèvre supérieure. ré Lisser les bords du…
+2: Faire une incision au centre de la réalisation, tremper la spatule inox dans de la Gelée…
+3: Commencer la coloration externe avec du Fard bleu et superposer du Fard rouge-sang. Remplir le…
+4: Remplir l’incision avec du Sang gélifié
+5: Badigeonner l’ensemble de la réalisation avec du Sang artificiel
+F = rendu final
+[19] plaie main1
+1: Appliquer au doigt une fine couche de Protection latex
+2: Appliquer un cylindre de Plasto-Nat. Lisser les bords vers l’extérieur en gardant un volume au…
+3: Faire une incision avec la spatule inox au centre de la réalisation
+4: Badigeonner une couche de Sealor pour « fixer » le Plasto-Nat. d Attendre que le Sealor sèche
+5: Commencer la coloration externe avec du Fard jaune superposer du Fard bleu et finir avec le…
+6: Refaire l’incision
+7: Colorer l’incision avec du Fard rouge-sang
+8: En inclinant le Pinceau, on peut soulever le Plasto-Nat afin de simuler un effet de peau «…
+9: Remplir l’incision avec du Sang gélifié
+10: Poser du Sang artificiel dans le cratère
+11: Faire couler une goutte de Sang artificiel
+F = rendu final
+[20] plaie main2
+1: Appliquer au doigt une fine couche de Protection latex. g
+2: Appliquer un cylindre de Plasto-Nat. Lisser les bords vers l’extérieur en gardant un petit…
+3: Faire une incision avec la spatule inox au centre de la réalisation. Badigeonner une couche de…
+4: Attendre que le Sealor sèche et Su commencer la coloration externe avec du Fard jaune
+5: Superposer du Fard bleu et finir avec le Fard rouge-sang. Travailler de façon nuancée
+6: Refaire l’incision
+7: Colorer l’intérieur de l’incision avec du Fard rouge-sang. p s
+8: Soulever de quelques millimètres la partie supérieure du Plasto-Nat afin de simuler un effet…
+9: Remplir l’incision avec du Sang gélifié
+10: Poser du Sang artificiel dans le cratère
+11: Faire couler du Sang artificiel
+F = rendu final
+[21] plaie main3
+1: Appliquer au doigt une fine couche de Protection latex. l
+2: Prendre des repaires, le premier point sera au dessus de la pliure de l’articulation du pouce…
+3: Appliquer un premier cylindre de Plasto-Nat. « se servir des repaires » Lisser les bords vers…
+4: Appliquer un second cylindre de Plasto-Nat afin de former un effet de « »
+5: Vaporiser du RCFILM afin de fixer la réalisation. Attendre que le RCFILM sèche
+6: Colorer l’intérieur du cratère avec le Pinceau N° 2 imbibé de Fard rouge-sang
+7: Commencer la coloration externe avec Su du Fard jaune
+8: Superposer du Fard bleu et finir avec le Fard rouge-sang. Travailler de façon nuancé
+9: Remplir le cratère de Sang gélifié. Répartir au doigt le Sang gélifié en fine couche
+10: Badigeonner l’ensemble de la réalisation avec du Sang artificiel « normal »
+11: Estomper le Sang artificiel avec un kleenex afin de donner un effet plus « nuancée »
+F = rendu final
+[22] plaie paupiere
+1: Appliquer avec le Pinceau N°2 du Fard rouge-sang dans le pli de la paupière
+2: Badigeonner la paupière de Sang artificiel « normal »
+3: Estomper le Sang artificiel avec un kleenex afin de donner un effet plus « nuancé »
+F = rendu final
+[23] plaie tete
+1: Appliquer un cylindre de Plasto-Nat en forme de cercle. Lisser les bords du Plasto-Nat vers…
+2: n Appliquer en tapotant du Fard bleu
+3: Colorer l’intérieur du cratère de Fard rouge-sang avec le Pinceau N° 2
+4: Remplir le cratère de Sang gélifié. Ba
+5: Badigeonner l’ensemble de la réalisation avec du Sang artificiel « normal »
+6: Faire couler du Sang artificiel
+F = rendu final
+[24] plaie abdomen evisceration
+1: Appliquer un morceau de sparadrap afin de recouvrir le nombril
+2: Appliquer de la Protection latex dans le sens des poils. « Possibilité de sécher la Protection…
+3: Appliquer du Produit peau et diffuser le en forme ovale
+4: Appliquer en tapotant une couche Sé opaque de Latex avec un morceau d’éponge mousse. Ne pas…
+5: Sécher le Latex avec un sèche-cheveux. En séchant le Latex devient « brillant »
+6: Appliquer une seconde couche de Latex et sécher comme précédemment
+7: Appliquer une dernière couche de Latex la sécher comme précédemment
+8: Afin d’éviter que le Latex colle, poser une couche de poudre incolore avec a une Houppe sur…
+9: Soulever un morceau de Latex afin de pouvoir y faire une incision avec une paire de ciseaux
+10: Soulever une des deux parties de Latex et colorer l’intérieur avec le Pinceau N° 6 imbibé de…
+11: Colorer l’autre partie de la même façon. Ne pas hésiter à recharger votre Pinceau de Fard…
+12: Imbiber l’intérieur de la réalisation avec du Sang artificiel
+13: Répartir le Sang artificiel à l’intérieur de la réalisation et faire déborder afin de colorer…
+14: Absorber le surplus de Sang artificiel
+15: Finir la réalisation en disposant la « viscère »
+F = rendu final ; D = visage après démaquillage
+[25] plaie grave avant bras
+1: Appliquer une fine couche de Protection latex
+2: Appliquer un premier cylindre de Plasto-Nat en forme de cercle. Lisser les bords vers…
+3: Appliquer un second cylindre de Plasto-Nat de manière à former un ovale
+4: Badigeonner l’ensemble de la réalisation avec du Sealor. Tapoter le Sealor pour accélérer le…
+5: Commencer la coloration en tapotant du Fard jaune. Travailler de façon nuancée
+6: Superposer du Fard bleu
+7: Finir la coloration par du Fard rouge-sang
+8: Colorer l’intérieur du cratère avec le Pinceau N° 2 imbibé de Fard rouge-sang
+9: Remplir le cratère de Sang gélifié
+10: Badigeonner l’ensemble de la réalisation avec du Sang artificiel
+11: Estomper le surplus de Sang artificiel avec un kleenex
+F = rendu final
+[26] plaie hemorragique
+1: Appliquer une fine couche de Protection latex
+2: Poser la Tubulure et la fixer avec deux morceaux de sparadrap
+3: Appliquer un premier cylindre de Plasto-Nat en forme de cercle. Lisser les bords vers…
+4: Appliquer un second cylindre de Plasto-Nat
+5: Vaporiser du RCFILM sur l’ensemble de la réalisation
+6: Colorer l’intérieur du cratère avec le Pinceau N° 2 imbibé de Fard rouge-sang
+7: Commencer la coloration externe en tapotant du Fard jaune. Travailler de façon nuancée
+8: Superposer du Fard bleu
+9: Finir la coloration par du Fard rouge-sang
+10: Remplir le cratère de Sang gélifié
+11: Finir la réalisation en incorporant un corps étranger. Mettre en situation
+F = rendu final
+[27] plaie simple
+1: Appliquer une fine couche de Protection latex
+2: Préparer un mince cylindre de Plasto-Nat
+3: Fixer le cylindre de Plasto-Nat en lissant les bords vers l’extérieur
+4: Faire une incision au centre du volume avec une spatule imbibée de Gelée démaquillante
+5: Fixer l’ensemble en appliquant une fine couche de Sealor. Pour accélérer le séchage, tapoter…
+6: Commencer la coloration externe par du Fard jaune. Tapoter de façon nuancée
+7: Superposer du Fard bleu. Travailler de façon nuancée
+8: Finir la coloration par du Fard rouge-sang
+9: Colorer l’intérieur de l’incision avec le Pinceau N°2 imbibé de Fard rouge-sang
+10: Badigeonner l’ensemble de la réalisation avec du Sang artificiel
+11: Estomper le surplus de Sang artificiel avec un kleenex
+F = rendu final
+[28] plaie simple corps etranger grave
+1: Appliquer une fine couche de Protection latex. Fixer le cylindre de Plasto-Nat en lissant les…
+2: Faire une incision au centre du volume avec une spatule imbibée de Gelée démaquillante
+3: Fixer l’ensemble en appliquant une fine couche de Sealor. Pour accélérer le séchage, tapoter…
+4: Commencer la coloration externe par du Fard jaune. Tapoter de façon nuancée
+5: Superposer du Fard bleu
+6: Finir la coloration par du Fard rouge-sang
+7: Refaire l’incision. Colorer l’intérieur de l’incision avec le Pinceau N°2 imbibé de Fard…
+8: Badigeonner l’ensemble de la réalisation avec du Sang artificiel. Estomper le surplus de Sang…
+v2-1: Faire glisser doucement la spatule verticalement dans l’incision puis r placer la spatule à…
+v2-2: Placer le Pinceau N°2 imbibé de Fard rouge-sang dans « l’amorce » et faire de petits…
+v2-3: Résultat. e e
+v2-4: Prendre avec la spatule du Sang gélifié et poser une fine pellicule dans le cratère
+v2-5: Appliquer du Sang artificiel dans le cratère. Placer un corps étranger
+v3-1: Essuyer le surplus de Sang artificiel. Soulever et déchirer le morceau de l Plasto-Nat afin de…
+v3-2: Eponger le surplus de Sang artificiel à l’intérieur du cratère afin de voir le Sang gélifié
+F = rendu final ; v2-F = rendu final de la variante v2 ; v3-F = rendu final de la variante v3
+Variantes : v1 = plaie simple ; v2 = transformation en plaie avec corps étranger ; v3 = transformation en plaie grave
+[29] plaie thoracique soufflante
+1: Appliquer un cylindre de Plasto-Nat en forme de cercle sur le thorax
+2: Fixer le cylindre de Plasto-Nat en lissant les bords vers l’extérieur
+3: Commencer la coloration externe par du Fard jaune, superposer du Fard bleu et finir par le…
+4: Colorer l’intérieur de l’incision avec le Pinceau N°2 imbibé de Fard rouge-sang
+5: Appliquer une fine couche de Produit cloques au fond du cratère au dessus du Sang gélifié
+6: Remplir le cratère avec un effervescent réduit en poudre
+7: Déposer sur le produit effervescent plusieurs gouttes de Sang artificiel liquide
+8: Laisser la réaction se faire
+F = rendu final
+[30] pose cylindre plastonat
+1: Appliquer une fine couche de Protection latex. f Vérifier que la Protection latex est bien…
+2: Disposer le cylindre de Plasto-Nat et le fixer en lissant les bords vers l’extérieur. Lisser…
+[31] pose prothese
+1: Sortir la Prothèse de sa boîte
+2: Vaporiser du RCFILM sur l’ensemble « recto / verso » de la Prothèse. Attendre que le RCFILM…
+3: Appliquer avec un coton tige de la Colle prothèses sur le pourtour sur la partie en contact…
+4: Attendre que la Colle prothèses sèche, la colle deviendra transparente. maqpr
+v2-1: Appliquer la Prothèse encollée
+v2-2: Bien appuyer sur les bords de la Prothèse
+v2-3: Badigeonner l’ensemble de la réalisation avec du Sang artificiel « épais »
+F = rendu final
+Variantes : v1 = préparation de la prothèse ; v2 = pose de la prothèse
+[32] entretien prothese
+1: Tremper la Prothèse dans de l’eau froide pour retirer le Sang artificiel
+2: Frotter délicatement la Prothèse dans l’eau. ATTENTION La Prothèse se fragilise dans l’eau
+3: Une fois la Prothèse nettoyée, la sécher avec du papier absorbant
+4: La Prothèse est propre et prête pour une nouvelle utilisation
+5: Remettre la Prothèse dans son emballage
+[33] preparation cylindre plastonat
+1: Prendre un morceau de Plasto-Nat et le façonner en « boulette »
+2: e Bien ramollir le morceau de Plasto-Nat entre ses doigts « sauf si il est déjà mou »
+3: Façonner en cylindre la boulette de Plasto-Nat en la travaillant sur la partie osseuse de la…
+4: Votre cylindre de Plasto-Nat est prêt
+[34] realisation viscere
+1: Verser du Latex dans une Coupelle. i
+2: Imbiber de Latex un morceau d’Eponge mousse. Répartir le Latex en tapotant l’Eponge imbibée…
+3: Former une couche de Latex bien épaisse
+4: Sécher la couche de Latex avec un sèche-cheveux
+5: En séchant le Latex brille et devient transparent
+6: Superposer une seconde couche de Latex
+7: Sécher la couche de Latex comme précédemment
+8: Appliquer une troisième couche de Latex
+9: Sécher la dernière couche au Sèche-cheveux
+10: Répartir des petits morceaux de coton hydrophile en forme de boudins irréguliers
+11: Commencer à soulever le Latex
+12: Soulever la couche de Latex afin de recouvrir la bande de coton
+13: Façonner votre « viscère » en lui donnant une forme irrégulière
+14: Colorer la « viscère » avec une Eponge imbibée de Fard pâleur
+15: Pour finir la réalisation, imbiber la viscère de Sang Artificiel « épais »
+F = rendu final
+[35] scalp
+1: Appliquer une fine couche de Protection latex sur l’ensemble du front. Poser de la Gelée…
+2: Appliquer sur le front une large bande de Produit simulation peau
+3: Répartir uniformément le Produit peau sur le front en gardant une bande neutre entre les…
+4: Poser en tapotant avec un morceau d’Eponge mousse imbibée de Latex La couche de Latex doit…
+5: Sécher la couche de Latex avec un Sèche-cheveux. Protéger les yeux
+6: En séchant le Latex brille. Superposer une seconde couche de Latex
+7: Sécher la couche de Latex comme précédemment
+8: Appliquer une troisième couche de Latex
+9: Sécher la dernière couche au sèche-cheveux
+10: Pour éviter que le Latex ne « colle » appliquer de la Poudre transparente avec une Houppe sur…
+11: Soulever un morceau du Produit peau et faire une incision
+12: Soulever le film de Latex et colorer l’intérieur de la réalisation avec le Pinceau N° 6 imbibé…
+13: Soulever une partie du film de Latex et remplir le cratère de Sang artificiel normal
+14: Diffuser le Sang artificiel à l’intérieur de la réalisation avant de recouvrir l’ensemble de…
+15: Bien recouvrir toute la réalisation de Sang artificiel
+F = rendu final ; D = visage après démaquillage`;
 
 app.post('/api/chat', async (req, res) => {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -2225,7 +2588,7 @@ app.post('/api/chat', async (req, res) => {
       body: JSON.stringify({
         ...req.body,
         model: 'claude-sonnet-4-6',
-        max_tokens: 1500,
+        max_tokens: 2500,
         system: SYSTEM
       })
     });
