@@ -184,12 +184,18 @@ const DMQ_LATEX=[{s:"Retirer le Latex et le Sang",d:"Rincer à l'<strong>eau ti�
 
 const IMG_BASE='https://assistant-maqpro.onrender.com/images/';
 const FICHE_ID={'01':'01-arcade-eclatee','02':'02-brulure-chimique','03':'03-brulure-grave-cloques1','04':'04-brulure-grave-cloques2','05':'05-brulure-simple','06':'06-brulure-thermique','07':'07-coup-de-soleil','08':'08-cyanose','09':'09-doigt-coupe','10':'10-entretien-pinceau','11':'11-eraflures','12':'12-malaise','13':'13-morsure','14':'14-nez-casse1','15':'15-nez-casse2','16':'16-oeil-creve','17':'17-plaie-levre1','18':'18-plaie-levre2','19':'19-plaie-main1','20':'20-plaie-main2','21':'21-plaie-main3','22':'22-plaie-paupiere','23':'23-plaie-tete','24':'24-plaie-abdomen-evisceration','25':'25-plaie-grave-avant-bras','26':'26-plaie-hemorragique','27':'27-plaie-simple','28':'28-plaie-simple-corps-etranger-grave','29':'29-plaie-thoracique-soufflante','30':'30-pose-cylindre-plastonat','31':'31-pose-prothese','32':'32-entretien-prothese','33':'33-preparation-cylindre-plastonat','34':'34-realisation-viscere','35':'35-scalp'};
-const VIDEOS={'01':'2h5XUFDIoZk','06':'26M4ZpTtBXg','25':'FgLXY_gL7-E'};
+const VIDEOS={'01':'2h5XUFDIoZk','02':'XvZjjyfXZMk','03':'Yswj66XRe1I','04':'JzrPRxd--iQ','05':'j2dxRgrz4gI','06':'26M4ZpTtBXg','07':'QRTw12azZ1U','08':'Nn5-NA_eFgM','09':'TkHuCq-yGLo','12':'y5odSwEDUH4','13':'xn3dGJvBUy8','14':'kRCEGrepWk8','15':'yZjnB8SqcCI','16':'uLe5Lqpgkis','17':'H_OZ7WzpjhA','18':'8iUuhl7fQoU','19':'Ow1oHSZzilc','20':'wc94DpfH_WY','21':'VeTUtsvKA6U','22':'sLa9yoa29qk','23':'ayshZywgt18','24':'9LzQShrhCgM','25':'FgLXY_gL7-E','26':'tzy2YIHxy6Y','27':'lnJDso2MQz0','28':'7VpNHtquEfw','29':'4tb5YeTc3Kg'};
+const VIDEO_TITRES={'01':"arcade sourcilière éclatée",'02':"brûlure chimique",'03':"brûlure grave avec cloques 1",'04':"brûlure grave avec cloques 2",'05':"brûlure simple",'06':"brûlure thermique",'07':"coup de soleil",'08':"cyanose",'09':"doigt coupé",'12':"malaise",'13':"morsure",'14':"nez cassé 1",'15':"nez cassé 2",'16':"oeil crevé",'17':"plaie à la lèvre 1",'18':"plaie à la lèvre 2",'19':"plaie à la main 1",'20':"plaie à la main 2",'21':"plaie à la main 3",'22':"plaie à la paupière",'23':"plaie à la tête",'24':"plaie abdomen avec éviscération",'25':"plaie grave à l'avant-bras",'26':"plaie hémorragique",'27':"plaie simple",'28':"plaie simple avec corps étranger",'29':"plaie thoracique soufflante"};
 function videoBtn(nums){
-  var out='',seen={};
+  var ids=[],seen={};
   for(var i=0;i<nums.length;i++){
-    var id=VIDEOS[(nums[i]||'').trim()];
-    if(id&&!seen[id]){seen[id]=1;out+='<a class="video-btn" href="https://www.youtube.com/watch?v='+id+'" target="_blank" rel="noopener noreferrer">\u25b6 Voir la vidéo</a>';}
+    var n=(nums[i]||'').trim();
+    if(VIDEOS[n]&&!seen[n]){seen[n]=1;ids.push(n);}
+  }
+  var out='';
+  for(var j=0;j<ids.length;j++){
+    var t=ids.length>1?' ('+VIDEO_TITRES[ids[j]]+')':'';
+    out+='<a class="video-btn" href="https://www.youtube.com/watch?v='+VIDEOS[ids[j]]+'" target="_blank" rel="noopener noreferrer">\u25b6 Voir la vidéo'+t+'</a>';
   }
   return out;
 }
