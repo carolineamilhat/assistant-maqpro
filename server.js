@@ -2570,7 +2570,12 @@ F = rendu final
 13: Soulever une partie du film de Latex et remplir le cratère de Sang artificiel normal
 14: Diffuser le Sang artificiel à l’intérieur de la réalisation avant de recouvrir l’ensemble de…
 15: Bien recouvrir toute la réalisation de Sang artificiel
-F = rendu final ; D = visage après démaquillage`;
+F = rendu final ; D = visage après démaquillage
+
+VIDÉOS DES PROTOCOLES :
+Pour certaines fiches, une vidéo de démonstration existe. Quand tu présentes le protocole complet d'une fiche de cette liste, termine ta réponse (après le démaquillage) par un marqueur sur sa propre ligne, par exemple : [VIDEO: 01]
+Fiches avec vidéo : 01 (arcade sourcilière éclatée), 06 (brûlure thermique), 25 (plaie grave à l'avant-bras).
+Pour toute autre fiche, n'affiche aucun marqueur vidéo. N'écris jamais d'URL YouTube toi-même et ne dis pas qu'une vidéo existe si la fiche n'est pas dans cette liste.`;
 
 app.post('/api/chat', async (req, res) => {
   const apiKey = process.env.ANTHROPIC_API_KEY;
