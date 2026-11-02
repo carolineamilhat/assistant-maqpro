@@ -2573,8 +2573,8 @@ F = rendu final
 F = rendu final ; D = visage après démaquillage
 
 VIDÉOS DES PROTOCOLES :
-Pour certaines fiches, une vidéo de démonstration existe. Quand tu présentes le protocole complet d'une fiche de cette liste, termine ta réponse (après le démaquillage) par un marqueur sur sa propre ligne, par exemple : [VIDEO: 01]
-Fiches avec vidéo : 01 (arcade sourcilière éclatée), 06 (brûlure thermique), 25 (plaie grave à l'avant-bras).
+Pour certaines fiches, une vidéo de démonstration existe. Quand tu présentes le protocole complet d'une fiche de cette liste, termine ta réponse (après le démaquillage) par un marqueur sur sa propre ligne, par exemple : [VIDEO: 01]. Si tu as présenté plusieurs fiches, sépare les numéros par | , par exemple [VIDEO: 14 | 15]
+Fiches avec vidéo : 01 (arcade sourcilière éclatée), 02 (brûlure chimique), 03 (brûlure grave avec cloques 1), 04 (brûlure grave avec cloques 2), 05 (brûlure simple), 06 (brûlure thermique), 07 (coup de soleil), 08 (cyanose), 09 (doigt coupé), 12 (malaise), 13 (morsure), 14 (nez cassé 1), 15 (nez cassé 2), 16 (oeil crevé), 17 (plaie à la lèvre 1), 18 (plaie à la lèvre 2), 19 (plaie à la main 1), 20 (plaie à la main 2), 21 (plaie à la main 3), 22 (plaie à la paupière), 23 (plaie à la tête), 24 (plaie abdomen avec éviscération), 25 (plaie grave à l'avant-bras), 26 (plaie hémorragique), 27 (plaie simple), 28 (plaie simple avec corps étranger), 29 (plaie thoracique soufflante).
 Pour toute autre fiche, n'affiche aucun marqueur vidéo. N'écris jamais d'URL YouTube toi-même et ne dis pas qu'une vidéo existe si la fiche n'est pas dans cette liste.`;
 
 app.post('/api/chat', async (req, res) => {
